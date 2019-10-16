@@ -1,0 +1,19 @@
+Sempre salvar a aplicação desta maneira: app.R
+Dividir as partes do código seta maneira: server.R e ui.R e colocar no mesmo diretorio
+
+server.R
+library(shiny)
+function(input, output) {
+  output$hist <- renderPlot({
+    hist(rnorm(input$num)) 
+  })
+}
+
+ui.R
+library(shiny)
+ui <- fluidPage(
+  sliderInput(inputId = "num",
+              label = "Choose a number",
+              value = 25, min = 1, max = 100),
+  plotOutput("hist")
+ )
